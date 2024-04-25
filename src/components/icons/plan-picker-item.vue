@@ -1,22 +1,29 @@
 <template>
-    <div class="plan">
-         <div class="description">
-           <span class="title">
-             {{ name }} 
-          </span>
-      </div>
-     </div>
- </template>
- <script setup>
-  defineProps ({
-name: {
-type: String,
-default: "true",
+  <div @click="select" :class="{'selected-plan':selected}" class="plan">
+       <div class="description">
+         <span class="title">
+           {{ name }} {{ selected ? "🐶" : "" }}
+        </span>
+    </div>
+   </div>
+</template>
+<script setup>
+import { ref } from 'vue';
+
+const selected = ref(false);
+const select = () => {
+selected.value = true
 }
+defineProps ({
+ name: {
+   type: String,
+   required: true
+ }, 
 });
- </script>
-  
- <style lang="scss" scoped>
-  
- </style>
- tiene menú contextual
+</script>
+
+<style scoped>
+    .selected-plan {
+      background-color:#B0C4DE;
+    }
+</style>
